@@ -39,9 +39,8 @@ export function makeState<T>(arg: T) {
   tinyState.set(unique, arg);
   return {
     key: unique,
-    setter: (arg: T, callback?: () => void) => {
+    set: (arg: T, callback?: () => void) => {
       tinyState.set(unique, arg);
-      EventBus.$emit(unique);
       if (callback) return callback();
     },
   };
