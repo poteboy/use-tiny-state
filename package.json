@@ -1,8 +1,8 @@
 {
   "name": "use-tiny-state",
   "version": "0.0.1",
-  "description": "tiniest state management library you can get/set from anywhere in your application",
-  "main": "index.ts",
+  "description": "tiniest global state management library you can use anywhere in your application",
+  "main": "dist/index.js",
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "tsc"
@@ -19,6 +19,7 @@
     "eslint-plugin-react": "^7.31.1",
     "prettier": "^2.7.1",
     "react": "^18.2.0",
+    "rimraf": "^3.0.2",
     "tiny-emitter": "^2.1.0",
     "ts-node": "^10.9.1",
     "typescript": "^4.8.2"

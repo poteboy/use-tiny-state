@@ -14,8 +14,9 @@ class ProxyMap extends Map<symbol, any> {
     return super.get(key);
   }
   set(key: symbol, value: any) {
+    const returnValue = super.set(key, value);
     EventBus.$emit(key);
-    return super.set(key, value);
+    return returnValue;
   }
 }
 
