@@ -18,7 +18,7 @@ import { render } from "react-dom";
 const count = makeState(0);
 
 function App() {
-  const [_count] = useTinyState<number>(count.key);
+  const [_count] = useTinyState<number>(count);
 
   return (
     <div>
