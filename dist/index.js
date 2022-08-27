@@ -34,9 +34,11 @@ function makeState(arg) {
     tinyState.set(unique, arg);
     return {
         key: unique,
-        setter: (arg) => {
+        setter: (arg, callback) => {
             tinyState.set(unique, arg);
             EventBus.$emit(unique);
+            if (callback)
+                return callback();
         },
     };
 }
