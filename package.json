@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "tiniest global state management library you can use anywhere in your application",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "author": "poteboy",
   "license": "MIT",
   "repository": {
@@ -15,7 +16,9 @@
   ],
   "scripts": {
     "prebuild": "rimraf dist",
-    "build": "tsc"
+    "build": "run-p build:*",
+    "build:common": "tsc",
+    "build:esm": "tsc -p tsconfig.esm.json"
   },
   "files": [
     "dist"
@@ -25,11 +28,14 @@
     "@types/react": "^18.0.17",
     "eslint": "^8.23.0",
     "eslint-plugin-react": "^7.31.1",
+    "npm-run-all": "^4.1.5",
     "prettier": "^2.7.1",
     "react": "^18.2.0",
     "rimraf": "^3.0.2",
-    "tiny-emitter": "^2.1.0",
     "ts-node": "^10.9.1",
     "typescript": "^4.8.2"
+  },
+  "dependencies": {
+    "tiny-emitter": "^2.1.0"
   }
 }
