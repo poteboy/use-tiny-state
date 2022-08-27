@@ -1,0 +1,10 @@
+language: node_js
+node_js:
+  - "16"
+deploy:
+  provider: npm
+  skip_cleanup: true
+  email: "poteboy.dev@gmail.com"
+  api_key: $NPM_TOKEN
+  on:
+    branch: main
