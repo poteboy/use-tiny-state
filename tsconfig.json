@@ -7,6 +7,7 @@
     "strict": true,
     "lib": ["ESNext"],
     "types": ["node"],
-    "outDir": "dist"
+    "outDir": "dist",
+    "declaration": true
   }
 }

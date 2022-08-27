@@ -19,11 +19,11 @@ class ProxyMap extends Map {
     }
 }
 const tinyState = new ProxyMap();
-function useTinyState(unique) {
-    const [state, setState] = (0, react_1.useState)(tinyState.get(unique));
+function useTinyState(makeState) {
+    const [state, setState] = (0, react_1.useState)(tinyState.get(makeState.key));
     (0, react_1.useEffect)(() => {
-        EventBus.$on(unique, () => {
-            setState(tinyState.get(unique));
+        EventBus.$on(makeState.key, () => {
+            setState(tinyState.get(makeState.key));
         });
     }, []);
     return [state];
@@ -34,9 +34,8 @@ function makeState(arg) {
     tinyState.set(unique, arg);
     return {
         key: unique,
-        setter: (arg, callback) => {
+        set: (arg, callback) => {
             tinyState.set(unique, arg);
-            EventBus.$emit(unique);
             if (callback)
                 return callback();
         },
