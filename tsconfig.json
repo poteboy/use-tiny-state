@@ -13,5 +13,5 @@
     "declaration": true,
     "declarationMap": true
   },
-  "exclude": ["src/**/__tests__/*", "jest.config.ts"]
+  "exclude": ["src/**/__tests__/*", "jest.config.ts", "dist/**/*"]
 }

@@ -13,7 +13,8 @@
   },
   "keywords": [
     "react",
-    "state-management"
+    "state-management",
+    "unstated-next"
   ],
   "scripts": {
     "test": "jest",
