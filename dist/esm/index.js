@@ -28,12 +28,20 @@ export function useTinyState(tinyVar) {
 export function makeState(arg) {
     const unique = Symbol();
     tinyState.set(unique, arg);
+    // setter function which also takes a callback as an optional argument
     let tv = function (newVal, callback) {
         tinyState.set(unique, newVal);
         if (callback)
             return callback(newVal);
     };
     tv.key = unique;
+    // get a current value
     tv.get = () => tinyState.get(unique);
+    // retrieve an initial value
+    tv.reset = (callback) => {
+        tinyState.set(unique, arg);
+        if (callback)
+            return callback(arg);
+    };
     return tv;
 }
