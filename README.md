@@ -1,5 +1,7 @@
 # use-tiny-state
 
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/poteboy/use-tiny-state/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/poteboy/use-tiny-state/tree/main)
+
 > tiniest global state management library you can use anywhere in your application🤞
 
 ## Install
