@@ -10,7 +10,7 @@ describe("useTinyState", () => {
     result = renderHook(() => useTinyState(state)).result;
   });
   afterEach(() => {
-    state(initialValue);
+    state.reset();
   });
 
   test("initial returnred value of useTinyState is initial arg", () => {
@@ -27,5 +27,13 @@ describe("useTinyState", () => {
     expect(result.current[0]).toBe(state.get());
     state(initialValue + 1);
     expect(result.current[0]).toBe(state.get());
+  });
+
+  test("reset function retrieves an initial value", () => {
+    const magicNumber = 100;
+    state(magicNumber);
+    expect(result.current[0]).toBe(magicNumber);
+    state.reset();
+    expect(result.current[0]).toBe(initialValue);
   });
 });

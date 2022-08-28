@@ -1,9 +1,7 @@
 # use-tiny-state
 
-
 [![npm version](https://badge.fury.io/js/use-tiny-state.svg)](https://badge.fury.io/js/use-tiny-state)
 [![CircleCI](https://dl.circleci.com/status-badge/img/gh/poteboy/use-tiny-state/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/poteboy/use-tiny-state/tree/main)
-
 
 > tiniest global state management library you can use anywhere in your application🤞
 
@@ -31,6 +29,7 @@ function App() {
   return (
     <div>
       <button onClick={() => _count(count + 1)}>countUp</button>
+      <button onClick={() => _count.reset()}>countUp</button>
       <div>{count}</div>
     </div>
   );

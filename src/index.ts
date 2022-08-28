@@ -37,19 +37,29 @@ export function useTinyState<T>(tinyVar: TinyVar<T>) {
 interface TinyVar<T> {
   readonly key: symbol;
   get: () => T;
-  (newVal?: T, callback?: (newVal?: T) => void): void;
+  (newVal: T, callback?: (newVal: T) => void): void;
+  reset: (callback?: (initialValue: T) => void) => T;
 }
 
 export function makeState<T>(arg: T): TinyVar<T> {
   const unique: unique symbol = Symbol();
   tinyState.set(unique, arg);
 
+  // setter function which also takes a callback as an optional argument
   let tv: any = function (newVal: T, callback: (newVal: T) => void) {
     tinyState.set(unique, newVal);
     if (callback) return callback(newVal);
   };
   tv.key = unique;
+
+  // get a current value
   tv.get = () => tinyState.get(unique) as T;
+
+  // retrieve an initial value
+  tv.reset = (callback?: (initialValue: T) => void) => {
+    tinyState.set(unique, arg);
+    if (callback) callback(arg);
+  };
 
   return tv as TinyVar<T>;
 }
