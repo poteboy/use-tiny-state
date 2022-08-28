@@ -58,7 +58,7 @@ export function makeState<T>(arg: T): TinyVar<T> {
   // retrieve an initial value
   tv.reset = (callback?: (initialValue: T) => void) => {
     tinyState.set(unique, arg);
-    if (callback) callback(arg);
+    if (callback) return callback(arg);
   };
 
   return tv as TinyVar<T>;

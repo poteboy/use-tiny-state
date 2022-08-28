@@ -36,4 +36,13 @@ describe("useTinyState", () => {
     state.reset();
     expect(result.current[0]).toBe(initialValue);
   });
+
+  test("callback function is called if given", () => {
+    const callbackA = jest.fn((arg: number) => {});
+    const callbackB = jest.fn((arg: number) => {});
+    state(initialValue, callbackA);
+    state.reset(callbackB);
+    expect(callbackA).toBeCalled();
+    expect(callbackB).toBeCalled();
+  });
 });
