@@ -1,5 +1,7 @@
 # use-tiny-state
 
+[![npm version](https://badge.fury.io/js/use-tiny-state.svg)](https://badge.fury.io/js/use-tiny-state)　[![CircleCI](https://dl.circleci.com/status-badge/img/gh/poteboy/use-tiny-state/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/poteboy/use-tiny-state/tree/main)
+
 > tiniest global state management library you can use anywhere in your application🤞
 
 - The difference from useState is that it is component-independent and can be referenced and updated from anywhere in the application.
