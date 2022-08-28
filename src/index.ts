@@ -22,28 +22,34 @@ class ProxyMap extends Map<symbol, any> {
 
 const tinyState = new ProxyMap();
 
-export function useTinyState<T>(makeState: MakeState) {
-  const [state, setState] = useState<T>(tinyState.get(makeState.key));
+export function useTinyState<T>(tinyVar: TinyVar<T>) {
+  const [state, setState] = useState<T>(tinyState.get(tinyVar.key));
 
   useEffect(() => {
-    EventBus.$on(makeState.key, () => {
-      setState(tinyState.get(makeState.key));
+    EventBus.$on(tinyVar.key, () => {
+      setState(tinyState.get(tinyVar.key));
     });
   }, []);
 
   return [state];
 }
 
-export function makeState<T>(arg: T) {
-  const unique: unique symbol = Symbol();
-  tinyState.set(unique, arg);
-  return {
-    key: unique,
-    set: (arg: T, callback?: () => void) => {
-      tinyState.set(unique, arg);
-      if (callback) return callback();
-    },
-  };
+interface TinyVar<T> {
+  readonly key: symbol;
+  get: () => T;
+  (newVal?: T, callback?: () => void): void;
 }
 
-type MakeState = ReturnType<typeof makeState<any>>;
+export function makeState<T>(arg: T): TinyVar<T> {
+  const unique: unique symbol = Symbol();
+  tinyState.set(unique, arg);
+
+  let tv: any = function (newVal: T, callback: () => void) {
+    tinyState.set(unique, newVal);
+    if (callback) return callback();
+  };
+  tv.key = unique;
+  tv.get = () => tinyState.get(unique) as T;
+
+  return tv as TinyVar<T>;
+}

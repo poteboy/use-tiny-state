@@ -10,7 +10,7 @@ describe("useTinyState", () => {
     result = renderHook(() => useTinyState(state)).result;
   });
   afterEach(() => {
-    state.set(initialValue);
+    state(initialValue);
   });
 
   test("initial returnred value of useTinyState is initial arg", () => {
@@ -19,7 +19,13 @@ describe("useTinyState", () => {
 
   test("state is updated when setter function is called", () => {
     expect(result.current[0]).toBe(initialValue);
-    state.set(initialValue + 1);
+    state(initialValue + 1);
     expect(result.current[0]).toBe(initialValue + 1);
+  });
+
+  test("state value and original value is always sync", () => {
+    expect(result.current[0]).toBe(state.get());
+    state(initialValue + 1);
+    expect(result.current[0]).toBe(state.get());
   });
 });
