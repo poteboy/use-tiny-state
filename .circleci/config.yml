@@ -18,3 +18,22 @@ jobs:
           key: v1-dependencies-{{ checksum "yarn.lock" }}
       - run: yarn build
       - run: yarn test
+      - run: echo //registry.npmjs.org/:_authToken=${NPM_TOKEN} > .npmrc
+      - run:
+          command: |
+            if can-npm-publish; then
+                npm publish
+            else
+                echo "publish skipped"
+            fi
+
+workflows:
+  version: 2
+  publishflow:
+    jobs:
+      - build:
+          context: npm
+          filters:
+            branches:
+              only:
+                - main
