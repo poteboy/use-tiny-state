@@ -29,7 +29,7 @@ function App() {
   return (
     <div>
       <button onClick={() => _count(count + 1)}>countUp</button>
-      <button onClick={() => _count.reset()}>countUp</button>
+      <button onClick={() => _count.reset()}>reset to initial value</button>
       <div>{count}</div>
     </div>
   );
