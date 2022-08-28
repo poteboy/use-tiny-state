@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "esModuleInterop": true,
+    "strict": true,
+    "noImplicitAny": false,
+    "lib": ["ESNext"],
+    "types": ["node", "jest", "@types/jest"],
+    "rootDir": "src",
+    "outDir": "dist",
+    "declaration": true,
+    "declarationMap": true
+  },
+  "exclude": ["src/**/__tests__/*", "jest.config.ts", "dist/**/*"]
+}
