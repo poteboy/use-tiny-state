@@ -2,6 +2,9 @@ version: 2.1
 
 jobs:
   build:
+    filters:
+      branches:
+        only: main
     docker:
       - image: node:16.10.0
     working_directory: ~/repo
