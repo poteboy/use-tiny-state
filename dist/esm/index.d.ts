@@ -1,8 +1,9 @@
-export declare function useTinyState<T>(makeState: MakeState): T[];
-export declare function makeState<T>(arg: T): {
-    key: symbol;
-    set: (arg: T, callback?: () => void) => void;
-};
-declare type MakeState = ReturnType<typeof makeState<any>>;
+export declare function useTinyState<T>(tinyVar: TinyVar<T>): T[];
+interface TinyVar<T> {
+    readonly key: symbol;
+    get: () => T;
+    (newVal?: T, callback?: () => void): void;
+}
+export declare function makeState<T>(arg: T): TinyVar<T>;
 export {};
 //# sourceMappingURL=index.d.ts.map

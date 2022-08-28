@@ -16,11 +16,11 @@ class ProxyMap extends Map {
     }
 }
 const tinyState = new ProxyMap();
-export function useTinyState(makeState) {
-    const [state, setState] = useState(tinyState.get(makeState.key));
+export function useTinyState(tinyVar) {
+    const [state, setState] = useState(tinyState.get(tinyVar.key));
     useEffect(() => {
-        EventBus.$on(makeState.key, () => {
-            setState(tinyState.get(makeState.key));
+        EventBus.$on(tinyVar.key, () => {
+            setState(tinyState.get(tinyVar.key));
         });
     }, []);
     return [state];
@@ -28,12 +28,12 @@ export function useTinyState(makeState) {
 export function makeState(arg) {
     const unique = Symbol();
     tinyState.set(unique, arg);
-    return {
-        key: unique,
-        set: (arg, callback) => {
-            tinyState.set(unique, arg);
-            if (callback)
-                return callback();
-        },
+    let tv = function (newVal, callback) {
+        tinyState.set(unique, newVal);
+        if (callback)
+            return callback();
     };
+    tv.key = unique;
+    tv.get = () => tinyState.get(unique);
+    return tv;
 }
