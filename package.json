@@ -1,6 +1,6 @@
 {
   "name": "use-tiny-state",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "tiniest global state management library you can use anywhere in your application",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
