@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: node:14.4.0-buster
+      - image: node:16.10.0
     working_directory: ~/repo
     steps:
       - checkout
