@@ -35,7 +35,7 @@ function makeState(arg) {
     let tv = function (newVal, callback) {
         tinyState.set(unique, newVal);
         if (callback)
-            return callback();
+            return callback(newVal);
     };
     tv.key = unique;
     tv.get = () => tinyState.get(unique);

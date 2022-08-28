@@ -37,16 +37,16 @@ export function useTinyState<T>(tinyVar: TinyVar<T>) {
 interface TinyVar<T> {
   readonly key: symbol;
   get: () => T;
-  (newVal?: T, callback?: () => void): void;
+  (newVal?: T, callback?: (newVal?: T) => void): void;
 }
 
 export function makeState<T>(arg: T): TinyVar<T> {
   const unique: unique symbol = Symbol();
   tinyState.set(unique, arg);
 
-  let tv: any = function (newVal: T, callback: () => void) {
+  let tv: any = function (newVal: T, callback: (newVal: T) => void) {
     tinyState.set(unique, newVal);
-    if (callback) return callback();
+    if (callback) return callback(newVal);
   };
   tv.key = unique;
   tv.get = () => tinyState.get(unique) as T;
